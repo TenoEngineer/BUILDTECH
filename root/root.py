@@ -10,6 +10,8 @@ import tkinter as tk
 root = tk.Tk()
 root.geometry("300x90")
 
+# TODO criar apenas um caminho e fazer o programa reconhecer o que é calculo e foto
+
 calculos_var = tk.StringVar()
 fotos_var = tk.StringVar()
 cidade_var = tk.StringVar()
