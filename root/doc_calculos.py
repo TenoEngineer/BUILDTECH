@@ -14,7 +14,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx2pdf import convert
 from pathlib import Path
 from docx.shared import Inches
-import root_1 as rt
+import root as rt
 import re
 
 path_calcu = list(rt.getInput())[0]
