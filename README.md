@@ -2,7 +2,7 @@
 Desenvolvimento de automação para processos manuais e repetitivos
 
 ## PDF2PNG
-Para rodar o script em .exe é necessário colocar a pasta "poppler-0.68.0" no caminho "C:/user/your_user"
+Para rodar o script em .exe é necessário colocar a pasta "poppler-0.68.0" no caminho "C:/user/your_user" \n
 Já disponível para utilização com arquivo excecutável (.exe) na pasta 'build'
 
 ## RPINT_SAVE
