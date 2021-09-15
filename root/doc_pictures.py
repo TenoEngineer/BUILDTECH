@@ -19,7 +19,7 @@ import document as dc
 import re
 
 path_fotos = list(rt.getInput())[0]
-city = list(rt.getInput())[1].upper()
+city = dc.cidade
 path = Path(path_fotos)
 fotos = list(path.glob('**\*.jpg'))
 

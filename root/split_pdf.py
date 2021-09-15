@@ -7,24 +7,24 @@ Created on Thu Sep  9 07:13:49 2021
 SPLIT PDF
 """
 import os
+from pathlib import Path
 from PyPDF2 import PdfFileReader, PdfFileWriter
 import root as rt
 import doc_calculos
 import doc_pictures
 
-foto_path = list(rt.getInput())[1]
-calcu_path = list(rt.getInput())[0]
-city = list(rt.getInput())[2].upper()
+path = Path(list(rt.getInput())[0])
+city = list(rt.getInput())[1].upper()
 
-pdfs = [f'{foto_path}\{city}_FOTOS.pdf', f'{calcu_path}\{city}_CALCULOS.pdf']
+pdfs = list(path.glob('**\*OS.pdf'))
 calculos = doc_calculos.cal()
 fotos = doc_pictures.pic()
 
 if calculos is True and fotos is True:  # Para rodar o split só depois de ter criado os 2 pdfs
     for i in pdfs:
 
-        pdf = PdfFileReader(open(i, "rb"))
-        size_pdf = os.path.getsize(i)
+        pdf = PdfFileReader(open(str(i), "rb"))
+        size_pdf = os.path.getsize(str(i))
         target_size_limit = 9
         target_size = target_size_limit*1024*1024
         pages = pdf.numPages
@@ -34,7 +34,7 @@ if calculos is True and fotos is True:  # Para rodar o split só depois de ter c
             list_sizes = []
 
             for page in range(pages):  # SELECIONA TODAS AS PAGINAS
-                file_name = f'{page}'  # ARUIVO DE UMA PAGE
+                file_name = f'{page}'  # ARQUIVO DE UMA PAGE
                 with open(file_name, 'wb') as out:  # CRIA NOVO ARQUIVO COM UMA PAGINA
                     PdfFileWriter().write(out)
                 size_page = os.path.getsize(
@@ -45,18 +45,18 @@ if calculos is True and fotos is True:  # Para rodar o split só depois de ter c
             partition_weight = 0
             list_pages_merge = [[]]
 
-            for m, weight in enumerate(list_sizes):
-                if partition_weight + weight > target_size:
-                    partition_weight += weight
-                    list_pages_merge[-1].append(m)
+            for m, weight in enumerate(list_sizes):     #PEGA LISTA DO TAMANHO DAS PAGE
+                if partition_weight + weight > target_size:     #SOMA COM A PRÓXIMA PAGE E VERIFICA SE FICA MAIOR QUE 9MB
+                    partition_weight += weight      #FAZ A SOMA DELES
+                    list_pages_merge[-1].append(m)      #CRIA UMA LISTA DO TOTAL DE PAGINAS QUE FICARÃO EM UM UNICOS PDF
                 else:
-                    partition_weight = weight
-                    list_pages_merge.append([m])
+                    partition_weight = weight       #SE SOMAR MAIOR QUE 9MB FAZ COM QUE CONTINUE O LOOP
+                    list_pages_merge.append([m])    #ADICIONA A LISTA EM UMA LISTA
 
-            for partition, pages in enumerate(list_pages_merge):
-                file_name = f'{i[:-4]}_{partition}.pdf'
+            for partition, pages in enumerate(list_pages_merge):    #LOOP PARA A GERAÇÃO DE PDFS
+                file_name = f'{str(i)[0:-4]}_{partition}.pdf'         #NOME DO NOVO PDF: CIDADE_FOTOS_X
                 for page in list_pages_merge[partition]:
-                    pdf_file = pdf.getPage(int(page))
+                    pdf_file = pdf.getPage(int(page))       
                     PdfFileWriter().addPage(pdf_file)
                     with open(file_name, 'wb') as out:  # CRIA NOVO ARQUIVO COM UMA PAGINA
                         PdfFileWriter().write(out)

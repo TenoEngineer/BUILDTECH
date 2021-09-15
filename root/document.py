@@ -7,11 +7,10 @@ Created on Thu Sep  2 11:34:23 2021
 INSERE O NOME DA CIDADE NO DOCX
 """
 
-from posixpath import dirname
 import root as rt
 from os import path
 
-cidade = list(rt.getInput())[2].upper()
+cidade = list(rt.getInput())[1].upper()
 
 
 def doc(document):

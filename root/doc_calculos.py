@@ -9,16 +9,17 @@ RELATÓRIO DE CÁLCULOS
 """
 
 from docx import Document
+import document as dc
 import os
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx2pdf import convert
 from pathlib import Path
 from docx.shared import Inches
-import root as rt
 import re
+import doc_pictures
 
-path_calcu = list(rt.getInput())[0]
-city = list(rt.getInput())[1].upper()
+path_calcu = doc_pictures.path_fotos
+city = dc.cidade
 path = Path(path_calcu)
 calculos = list(path.glob('**\*.png'))
 calculos = sorted(calculos, key = lambda x: [int(k) if k.isdigit() else k for k in re.split('([0-9]+)', x.stem)])
