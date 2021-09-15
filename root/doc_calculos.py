@@ -14,22 +14,19 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx2pdf import convert
 from pathlib import Path
 from docx.shared import Inches
-import root as rt
+import root_1 as rt
+import re
 
 path_calcu = list(rt.getInput())[0]
-city = list(rt.getInput())[2].upper()
+city = list(rt.getInput())[1].upper()
 path = Path(path_calcu)
-calculos = []
+calculos = list(path.glob('**\*.png'))
+calculos = sorted(calculos, key = lambda x: [int(k) if k.isdigit() else k for k in re.split('([0-9]+)', x.stem)])
 
-for file in os.listdir(path_calcu):
-    if '.png' in file:
-        calculos.append(file)
 doc_calculos = Document(f'{os.path.dirname(__file__)}\MODELO_CALCULOS.docx')
-calculos = sorted(calculos, key=lambda x: int(os.path.splitext(x)[0]))
 
 for i, image in enumerate(calculos):
-    #picture = os.path.join(path_calcu, image)
-    picture = f'{path_calcu}\{image}'
+    picture = str(image)
     p = doc_calculos.add_paragraph()
     p.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
     run = p.add_run()

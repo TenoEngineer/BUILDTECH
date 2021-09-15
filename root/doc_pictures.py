@@ -14,13 +14,16 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx2pdf import convert
 from pathlib import Path
 from docx.shared import Inches
-import root as rt
+import root_1 as rt
 import document as dc
+import re
 
-path_fotos = list(rt.getInput())[1]
-city = list(rt.getInput())[2].upper()
+path_fotos = list(rt.getInput())[0]
+city = list(rt.getInput())[1].upper()
 path = Path(path_fotos)
-fotos = list(path.glob('*.jpg'))
+fotos = list(path.glob('**\*.jpg'))
+
+fotos = sorted(fotos, key = lambda x: [int(k) if k.isdigit() else k for k in re.split('([0-9]+)', x.stem)])
 
 relatorio = str(
     f'{os.path.dirname(__file__)}\RELATORIO FOTOGRAFICO MODELO A4.docx')
