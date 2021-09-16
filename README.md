@@ -5,7 +5,7 @@ Desenvolvimento de automação para processos manuais e repetitivos
 Para rodar o script em .exe é necessário colocar a pasta "poppler-0.68.0" no caminho "C:/user/your_user".
 Já disponível para utilização com arquivo excecutável (.exe) na pasta 'build'
 
-## RPINT_SAVE
+## PRINT_SAVE
 Gera print do excel que está configuraado para abrir e salva em PDF.
 Falta inserir o excel dentro da pasta para que o script pegue esse excel.
 Fácil utilização com o AHK, utilizando algum atalho. (Ex.: crtl + A)
