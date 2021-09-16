@@ -1,6 +1,10 @@
 from ast import Index
 import win32com.client as wsc
 import tkinter as tk
+from os import path
+
+# CASO OCORRA ALGUM ERRO DE 00020813-0000-0000-C000-000000000046x0x1x9
+# APAGAR O TEMP DO PC E RODAR NOVAMENTE
 
 # JANELA PAARA INSERIR O NÚMERO DO POSTE
 root = tk.Tk()
@@ -29,15 +33,14 @@ save_btn.grid(row=1, column=1)
 o = wsc.gencache.EnsureDispatch("Excel.Application")
 o.Visible = True
 
-wb_path = r"C:\Users\heito\OneDrive\Informações Projetos\PLANILHA CÁLCULO RGE - CEEE 2.xls"
+wb_path = f'{path.dirname(__file__)}\CÁLCULO_RGE.xls'
 wb = o.Workbooks.Open(wb_path)
 
 root.mainloop()
 
 poste = getInput()
-
-path_pdf = (
-    r'C:\Users\heito\OneDrive\Executando\BUILDTECH\{poste}').format(poste=poste)  # COLOCA O INPUT
+user_path = path.expanduser('~')
+path_pdf = f'{user_path}\{poste}'  # COLOCA O INPUT
 print_area = '$A$1:$AI$54'
 
 #ws = wb.Worksheets(index)
