@@ -6,8 +6,9 @@ Para rodar o script em .exe é necessário colocar a pasta "poppler-0.68.0" no c
 Já disponível para utilização com arquivo excecutável (.exe) na pasta 'build'
 
 ## PRINT_SAVE
-Gera print do excel que está configuraado para abrir e salva em PDF.
-Falta inserir o excel dentro da pasta para que o script pegue esse excel.
+Gera print do excel que está configurado para abrir e salva em PDF.
+Problema na exceução do script em .exe... Utilizando o arquivo .py funciona.
+Caso ocorra algum erro, é só apagar o %temp% do pc.
 Fácil utilização com o AHK, utilizando algum atalho. (Ex.: crtl + A)
 
 ## ROOT
