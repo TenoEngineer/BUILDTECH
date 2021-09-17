@@ -7,14 +7,15 @@ Created on Thu Sep  9 07:13:49 2021
 SPLIT PDF
 """
 import os
-from pathlib import Path
+#from pathlib import Path
 from PyPDF2 import PdfFileReader, PdfFileWriter
-import root as rt
+#import root as rt
 import doc_calculos
 import doc_pictures
+import document as dc
 
-path = Path(list(rt.getInput())[0])
-city = list(rt.getInput())[1].upper()
+path = doc_pictures.path
+city = dc.cidade
 
 pdfs = list(path.glob('**\*OS.pdf'))
 calculos = doc_calculos.cal()
@@ -27,7 +28,7 @@ if calculos is True and fotos is True:  # Para rodar o split só depois de ter c
         size_pdf = os.path.getsize(str(i))
         target_size_limit = 9
         target_size = target_size_limit*1024*1024
-        pages = pdf.numPages
+        pages = pdf.getNumPages()
 
         if size_pdf > target_size:  # SE O ARQUIVO FOR MAIOR DE 9 MB
 
@@ -35,8 +36,9 @@ if calculos is True and fotos is True:  # Para rodar o split só depois de ter c
 
             for page in range(pages):  # SELECIONA TODAS AS PAGINAS
                 file_name = f'{page}'  # ARQUIVO DE UMA PAGE
+                # TODO AQUI TEM QUE FAZER PEGAR O NUMERO DA PAGINA SELECIONADA NO FOR
                 with open(file_name, 'wb') as out:  # CRIA NOVO ARQUIVO COM UMA PAGINA
-                    PdfFileWriter().write(out)
+                    PdfFileWriter().write(i.getPage(page))
                 size_page = os.path.getsize(
                     file_name)  # TAMANHO DO ARQUIVO
                 list_sizes.append(size_page)  # ADICIONA NA LISTA O TAMANHO
