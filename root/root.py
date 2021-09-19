@@ -9,11 +9,11 @@ import tkinter as tk
 from os import path
 
 root = tk.Tk()
-root.iconphoto(False, tk.PhotoImage(file=f'{path.dirname(__file__)}\icon\BuildTech.png'))
+#root.iconphoto(False, tk.PhotoImage(file=f'{path.dirname(path.abspath(__file__))}\icon\BuildTech.png'))
+root.iconphoto(False, tk.PhotoImage(
+    file=f'{path.abspath(__file__)}\icon\BuildTech.png'))
 root.title('AUTOMAÇÃO RELATÓRIOS')
 root.geometry("750x90")
-
-# TODO criar apenas um caminho e fazer o programa reconhecer o que é calculo e foto...
 
 path_var = tk.StringVar()
 cidade_var = tk.StringVar()
@@ -27,9 +27,9 @@ def getInput():
 
 
 path_label = tk.Label(root, text='Caminho pasta projeto:',
-                          font=('calibre', 10, 'bold'))
+                      font=('calibre', 10, 'bold'))
 path_entry = tk.Entry(root, textvariable=path_var,
-                          font=('calibre', 10, 'normal'), width=80)
+                      font=('calibre', 10, 'normal'), width=80)
 
 cidade_label = tk.Label(root, text='Nome da cidade:',
                         font=('calibre', 10, 'bold'))
