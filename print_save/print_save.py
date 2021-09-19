@@ -40,7 +40,7 @@ root.mainloop()
 
 poste = getInput()
 user_path = path.expanduser('~')
-path_pdf = f'{user_path}\{poste}'  # COLOCA O INPUT
+path_pdf = f'{user_path}\{poste}.pdf'  # COLOCA O INPUT
 print_area = '$A$1:$AI$54'
 
 #ws = wb.Worksheets(index)
