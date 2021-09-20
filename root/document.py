@@ -21,4 +21,4 @@ def doc(document):
             "CIDADE", cidade)
         header.paragraphs[1].bold = True
 
-    document.save(f'{path.dirname(__file__)}\FOTOS.docx')
+    document.save(path.abspath(f'{path.dirname(__file__)}\FOTOS.docx'))

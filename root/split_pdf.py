@@ -12,7 +12,7 @@ import doc_calculos
 import doc_pictures
 import document as dc
 
-path = doc_pictures.path
+path = doc_pictures.path_path
 city = dc.cidade
 
 pdfs = list(path.glob('**\*OS.pdf'))
