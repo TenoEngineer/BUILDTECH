@@ -14,5 +14,6 @@ Fácil utilização com o AHK, utilizando algum atalho. (Ex.: crtl + A)
 ## ROOT
 Gera os relatórios em PDF e corta eles em até 9MB;
 Necessário inserir o PooPler na pasta 'C:/User/Your_usar/';
-Ainda em desenvolvimento. Os PDF já geram, o split ainda não funciona.
+Em funcionamento no python.
+Em desenvolvimento para excutável
 
