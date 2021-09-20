@@ -9,9 +9,8 @@ import tkinter as tk
 from os import path
 
 root = tk.Tk()
-#root.iconphoto(False, tk.PhotoImage(file=f'{path.dirname(path.abspath(__file__))}\icon\BuildTech.png'))
 root.iconphoto(False, tk.PhotoImage(
-    file=f'{path.abspath(__file__)}\icon\BuildTech.png'))
+    file=f'{path.dirname(__file__)}\icon\BuildTech.png'))
 root.title('AUTOMAÇÃO RELATÓRIOS')
 root.geometry("750x90")
 
