@@ -19,8 +19,12 @@ pdfs = list(path.glob('**\*OS.pdf'))
 calculos = doc_calculos.cal()
 fotos = doc_pictures.pic()
 
+
 if calculos is True and fotos is True:  # Para rodar o split só depois de ter criado os 2 pdfs
     for i in pdfs:
+
+        global target_size_limit
+        global target_size
 
         pdf = PdfFileReader(open(str(i), "rb"))
         size_pdf = os.path.getsize(str(i))
@@ -71,3 +75,7 @@ if calculos is True and fotos is True:  # Para rodar o split só depois de ter c
 
             for page in range(pdf.getNumPages()):
                 os.remove(os.path.join(path, f'{page}.pdf'))
+
+
+def split():
+    return True

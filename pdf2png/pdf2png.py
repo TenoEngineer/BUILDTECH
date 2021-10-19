@@ -18,13 +18,14 @@ pdf_var = tk.StringVar()
 
 def getInput():
     pdfs = pdf_var.get()
+    root.quit()
     return pdfs
 
 
 pdf_label = tk.Label(root, text='Caminho pdfs:', font=('calibre', 10, 'bold'))
 pdf_entry = tk.Entry(root, textvariable=pdf_var,
                      font=('calibre', 10, 'normal'), width=60)
-
+pdf_entry.focus_set()
 pdf_label.grid(row=0, column=0)
 pdf_entry.grid(row=0, column=1)
 
@@ -53,3 +54,4 @@ for pic in pictures:
     name = pic
     image = image[0]
     image.save(f'{path}\{str(name)}.png', 'PNG')
+    os.remove(f'{path}\{str(name)}.pdf')

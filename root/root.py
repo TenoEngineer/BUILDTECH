@@ -29,7 +29,7 @@ cidade_var = tk.StringVar()
 def getInput():
     path = path_var.get()
     cidade = cidade_var.get()
-
+    root.quit()
     return path, cidade
 
 
@@ -37,6 +37,7 @@ path_label = tk.Label(root, text='Caminho pasta projeto:',
                       font=('calibre', 10, 'bold'))
 path_entry = tk.Entry(root, textvariable=path_var,
                       font=('calibre', 10, 'normal'), width=80)
+path_entry.focus_set()
 
 cidade_label = tk.Label(root, text='Nome da cidade:',
                         font=('calibre', 10, 'bold'))
