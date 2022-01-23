@@ -21,5 +21,5 @@ return
 
 ;PRINT CALCULO
 #q::
-Run "dist\print_save.exe"
+Run "C:\Users\heito\BUILDTECH\print_save\main.py"
 return
