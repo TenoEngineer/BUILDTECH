@@ -3,7 +3,7 @@ Desenvolvimento de automação para processos manuais e repetitivos
 
 ## PDF2PNG
 Para rodar o script em .exe é necessário colocar a pasta "poppler-0.68.0" no caminho "C:/user/your_user".
-Já disponível para utilização com arquivo excecutável (.exe) na pasta 'build'
+Já disponível para utilização com arquivo excecutável (.exe) na pasta 'dist'
 
 ## PRINT_SAVE
 Gera print do excel que está configurado para abrir e salva em PDF.

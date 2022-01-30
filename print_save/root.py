@@ -24,3 +24,6 @@ save_btn = tk.Button(root, text='OK', command=getInput, width=8)
 save_btn.grid(row=1, column=1)
 
 root.mainloop()
+
+if __name__ == '__main__':
+    getInput()
