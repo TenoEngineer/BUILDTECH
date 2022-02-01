@@ -79,3 +79,7 @@ if calculos is True and fotos is True:  # Para rodar o split só depois de ter c
 
 def split():
     return True
+
+
+if __name__ == '__main__':
+    split()

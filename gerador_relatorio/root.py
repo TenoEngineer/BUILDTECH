@@ -7,18 +7,8 @@ Created on Tue Aug 31 11:55:05 2021
 
 import tkinter as tk
 from os import path
-import sys
 
 root = tk.Tk()
-
-if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
-    print('running in a PyInstaller bundle')
-else:
-    path_abs = path.abspath(path.dirname(__file__))
-    path_file = f'{path_abs}\icon\BuildTech.png'
-
-#root.iconphoto(False, tk.PhotoImage(file=f'{path.dirname(__file__)}\icon\BuildTech.png'))
-root.iconphoto(False, tk.PhotoImage(file=path_file))
 root.title('AUTOMAÇÃO RELATÓRIOS')
 root.geometry("750x90")
 
@@ -53,3 +43,6 @@ save_btn = tk.Button(root, text='OK', command=getInput, width=15)
 save_btn.grid(row=5, column=1)
 
 root.mainloop()
+
+if __name__ == '__main__':
+    getInput()

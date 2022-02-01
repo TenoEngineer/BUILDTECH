@@ -9,8 +9,10 @@ INSERE O NOME DA CIDADE NO DOCX
 
 import root as rt
 from os import path
+import sys
 
 cidade = list(rt.getInput())[1].upper()
+fotos = 'FOTOS.docx'
 
 
 def doc(document):
@@ -21,4 +23,13 @@ def doc(document):
             "CIDADE", cidade)
         header.paragraphs[1].bold = True
 
-    document.save(path.abspath(f'{path.dirname(__file__)}\FOTOS.docx'))
+    if getattr(sys, 'frozen', False):
+        application_path = path.dirname(sys.executable)
+    elif __file__:
+        application_path = path.dirname(__file__)
+
+    document.save(path.join(application_path, fotos))
+
+
+if __name__ == '__main__':
+    doc()
