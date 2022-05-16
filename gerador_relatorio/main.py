@@ -7,74 +7,92 @@ Created on Fri Sep 10 09:02:49 2021
 DESENVOLVIMENTO DO PROGRAMA MAIN
 """
 
-import doc_pictures
-import document
-import split_pdf
-import doc_calculos
-import time
-from os import path, remove, listdir
-from PyPDF2 import PdfFileReader
 import sys
+from glob import glob
+from os import listdir, path, remove
+from pathlib import Path
+
+from PyPDF2 import PdfFileReader
+
+import doc_calculos
+import doc_pictures
+import root_var as rt
+import split_pdf
+
+caminho = rt.caminho
+cidade = rt.cidade
+validacao_fotos = rt.validacao_fotos
+validacao_calculos = rt.validacao_calculos
 
 if getattr(sys, 'frozen', False):
     application_path = path.dirname(sys.executable)
 elif __file__:
     application_path = path.dirname(__file__)
-paths = path.dirname(__file__)
 
-fotos_pdf = path.join(doc_pictures.path_fotos,
-                      f'{doc_pictures.city}_FOTOS.pdf')
-calculos_pdf = path.join(doc_pictures.path_fotos,
-                         f'{doc_pictures.city}_CALCULOS.pdf')
+fotos_pdf = path.join(caminho, f'{cidade}_FOTOS.pdf')
+calculos_pdf = path.join(caminho, f'{cidade}_CALCULOS.pdf')
 fotos_docx = path.join(application_path, 'FOTOS.docx')
 fotos_total = path.join(application_path, 'FOTOS_TOTAL.docx')
 calculos_total = path.join(application_path, 'CALCULOS_TOTAL.docx')
 
 try:
-
-    def exc():
-        split_pdf
-        target_size = split_pdf.target_size
+    target_size = split_pdf.target_limit()
+    pic = doc_pictures.fotos()
+    cal = doc_calculos.calculos()
+    if pic is True and cal is False:
+        pdfs = glob(path.join(caminho, "*.pdf"))
+        split_pdf.splitPdfs(pdfs)
         if path.getsize(fotos_pdf) > target_size:
-            try:
-                remove(fotos_pdf)
-            except:
-                with open(fotos_pdf) as f:
-                    PdfFileReader(f)
-                    f.close()
-                remove(fotos_pdf)
+            remove(fotos_pdf)
+    elif cal is True and pic is False:
+        pdfs = glob(path.join(caminho, "*.pdf"))
+        split_pdf.splitPdfs(pdfs)
         if path.getsize(calculos_pdf) > target_size:
-            try:
-                remove(calculos_pdf)
-            except:
-                with open(calculos_pdf) as f:
-                    PdfFileReader(f)
-                    f.close()
-                remove(calculos_pdf)
-
-    funcs = [document, doc_pictures, doc_calculos, exc()]
-
-    past = listdir(paths)
-
-    if fotos_docx in past:
+            remove(calculos_pdf)
+    elif pic is True and cal is True:
+        pdfs = glob(path.join(caminho, "*.pdf"))
+        split_pdf.splitPdfs(pdfs)
+        if int(path.getsize(fotos_pdf)) > int(target_size):
+            remove(fotos_pdf)
+        if int(path.getsize(calculos_pdf)) > int(target_size):
+            remove(calculos_pdf)
+    try:
         remove(fotos_docx)
-    if fotos_total in past:
+    except:
+        pass
+    try:
         remove(fotos_total)
-    if calculos_total in past:
+    except:
+        pass
+    try:
         remove(calculos_total)
-
-    funcs
-
-    remove(fotos_docx)
-    remove(fotos_total)
-    remove(calculos_total)
-
+    except:
+        pass
 
 except:
-    remove(fotos_docx)
-    remove(fotos_total)
-    remove(calculos_total)
+    try:
+        remove(fotos_docx)
+    except:
+        pass
+    try:
+        remove(fotos_total)
+    except:
+        pass
+    try:
+        remove(calculos_total)
+    except:
+        pass
 
-
-if __name__ == '__main__':
-    exc()
+try:
+    path_path = Path(caminho)
+    scr = list(path_path.glob('*.scr'))
+    csv = list(path_path.glob('*.csv'))
+    bak = list(path_path.glob('*.bak'))
+    for i in scr:
+        remove(i)
+    for i in csv:
+        remove(i)
+    for i in bak:
+        remove(i)
+except:
+    pass
