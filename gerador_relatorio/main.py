@@ -14,10 +14,8 @@ from pathlib import Path
 
 from PyPDF2 import PdfFileReader
 
-import doc_calculos
-import doc_pictures
+import reports
 import root_var as rt
-import split_pdf
 
 caminho = rt.caminho
 cidade = rt.cidade
@@ -36,26 +34,7 @@ fotos_total = path.join(application_path, 'FOTOS_TOTAL.docx')
 calculos_total = path.join(application_path, 'CALCULOS_TOTAL.docx')
 
 try:
-    target_size = split_pdf.target_limit()
-    pic = doc_pictures.fotos()
-    cal = doc_calculos.calculos()
-    if pic is True and cal is False:
-        pdfs = glob(path.join(caminho, "*.pdf"))
-        split_pdf.splitPdfs(pdfs)
-        if path.getsize(fotos_pdf) > target_size:
-            remove(fotos_pdf)
-    elif cal is True and pic is False:
-        pdfs = glob(path.join(caminho, "*.pdf"))
-        split_pdf.splitPdfs(pdfs)
-        if path.getsize(calculos_pdf) > target_size:
-            remove(calculos_pdf)
-    elif pic is True and cal is True:
-        pdfs = glob(path.join(caminho, "*.pdf"))
-        split_pdf.splitPdfs(pdfs)
-        if int(path.getsize(fotos_pdf)) > int(target_size):
-            remove(fotos_pdf)
-        if int(path.getsize(calculos_pdf)) > int(target_size):
-            remove(calculos_pdf)
+    reports.main()
     try:
         remove(fotos_docx)
     except:
