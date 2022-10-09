@@ -1,21 +1,20 @@
-from email import message
-from numpy import tile
-import win32com.client as wsc
-from os import path, mkdir, listdir
-from tkinter import messagebox
-import root
 import sys
+from os import listdir, mkdir, path
+from tkinter import messagebox
 
+import win32com.client as wsc
 
+import root
+
+# Decide o formato do caminho, por causa do Pyinstaller
+if getattr(sys, 'frozen', False):
+    application_path = path.dirname(sys.executable)
+elif __file__:
+    application_path = path.dirname(__file__)
 try:
     # Chama Excel
     o = wsc.gencache.EnsureDispatch("Excel.Application")
     o.Visible = True
-    # Decide o formato do caminho, por causa do Pyinstaller
-    if getattr(sys, 'frozen', False):
-        application_path = path.dirname(sys.executable)
-    elif __file__:
-        application_path = path.dirname(__file__)
     # Abre Excel
     excel = 'CÁLCULO_RGE.xls'
     try:

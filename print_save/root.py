@@ -9,7 +9,7 @@ poste_var = tk.StringVar()
 def getInput():
     root.quit()
     poste = poste_var.get()
-    return poste
+    return poste.upper()
 
 
 poste_label = tk.Label(root, text='Poste:', font=('calibre', 10, 'bold'))

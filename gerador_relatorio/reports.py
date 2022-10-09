@@ -16,7 +16,6 @@ from pdf2image import convert_from_path
 from PIL import Image
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
-import documentacao as dc
 import root_var as rt
 
 if getattr(sys, 'frozen', False):
